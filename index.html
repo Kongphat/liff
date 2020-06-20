@@ -60,9 +60,9 @@
     async function scanCode() {
     }
 
-    function openWindow() {
+    async function openWindow() {
       //window.location.href = "http://110.77.132.11:8055/index.aspx?token="+accesstoken;
-      liff.openWindow({
+      await liff.openWindow({
         url: 'http://110.77.132.11:8055/index.aspx?token='+accesstoken,
         external: 'false'
       });
@@ -77,12 +77,11 @@
       if (liff.getContext().type !== "none") {
         await liff.sendMessages([
           {
-            "type": "sticker",
-            "stickerId": 1,
-            "packageId": 1
+            "type": "text",
+            "text": "Hello Jakaman.",
           }
-        ])
-        alert("Message sent")
+        ]);
+        //alert("Message sent")
       }
     }
 
@@ -100,7 +99,7 @@
       document.getElementById("accessToken").append(accesstoken);
       //var uri = "http://110.77.132.11:8055/index.aspx?token="+accesstoken;
       //window.location.href = uri;
-      
+
       //alert(accesstoken);
       //document.getElementById("version").append(liff.getVersion());
     }
