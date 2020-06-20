@@ -60,8 +60,9 @@
     }
 
     function openWindow() {
+      var at = liff.getAccessToken();
       liff.openWindow({
-        url: 'http://110.77.132.11:8055/index.aspx?uid='+liff.getUserId(),
+        url: 'http://110.77.132.11:8055/index.aspx?token='+at,
         external: 'false'
       });
     }
@@ -80,13 +81,13 @@
 
     function getEnvironment() {
       document.getElementById("os").append(liff.getOS());
+      document.getElementById("accessToken").append(liff.getAccessToken());
       //document.getElementById("version").append(liff.getVersion());
     }
 
     async function main() {
       //alert("LINE Developers x Skooldio")
       await liff.init({ liffId:"1654334292-QBv9jlBx" })
-      alert("os = " + document.getElementById("os").append(liff.getOS()));
       getEnvironment();
       // getUserProfile()
       // getContext()
