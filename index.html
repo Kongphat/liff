@@ -62,12 +62,6 @@
 
     function openWindow() {
       //window.location.href = "http://110.77.132.11:8055/index.aspx?token="+accesstoken;
-      liff.sendMessages([
-        {
-          type: 'text',
-          text: 'Hello mama',
-        }
-      ]);
       liff.openWindow({
         url: 'http://110.77.132.11:8055/index.aspx?token='+accesstoken,
         external: 'false'
@@ -78,21 +72,26 @@
     async function getFriendship() {
     }
 
+
     async function sendMsg() {
+      if (liff.getContext().type !== "none") {
+        await liff.sendMessages([
+          {
+            "type": "sticker",
+            "stickerId": 1,
+            "packageId": 1
+          }
+        ])
+        alert("Message sent")
+      }
     }
 
     function getContext() {
     }
 
     async function getUserProfile() {
-      await liff.getProfile().then(profile => {
-        document.getElementById("userId").append(profile.userId);
-        // profile.userId
-        // profile.displayName
-        // profile.pictureUrl
-        // profile.statusMessage
-        
-      });
+      const profile = await liff.getProfile();
+      document.getElementById("userId").append(profile.userId);
     }
 
     function getEnvironment() {
