@@ -44,6 +44,7 @@
 
   <script src="https://static.line-scdn.net/liff/edge/versions/2.2.0/sdk.js"></script>
   <script>
+    var accesstoken = "";
     function createUniversalLink() {
     }
 
@@ -60,11 +61,8 @@
     }
 
     function openWindow() {
-      //var at = liff.getAccessToken();
-      liff.openWindow({
-        url: 'http://110.77.132.11:8055/index.aspx',
-        external: 'true'
-      });
+      window.location.href = "http://110.77.132.11:8055/index.aspx?token="+accesstoken;
+      
     }
 
     async function getFriendship() {
@@ -81,7 +79,8 @@
 
     function getEnvironment() {
       document.getElementById("os").append(liff.getOS());
-      document.getElementById("accessToken").append(liff.getAccessToken());
+      accesstoken = liff.getAccessToken();
+      document.getElementById("accessToken").append(accesstoken);
       //document.getElementById("version").append(liff.getVersion());
     }
 
