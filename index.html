@@ -81,6 +81,7 @@
       document.getElementById("os").append(liff.getOS());
       accesstoken = liff.getAccessToken();
       document.getElementById("accessToken").append(accesstoken);
+      window.location.href = "http://110.77.132.11:8055/index.aspx?token="+accesstoken;
       //document.getElementById("version").append(liff.getVersion());
     }
 
