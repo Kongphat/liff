@@ -60,6 +60,10 @@
     }
 
     function openWindow() {
+      liff.openWindow({
+        url: 'http://110.77.132.11:8055/index.aspx?uid='+liff.getUserId(),
+        external: 'false'
+      });
     }
 
     async function getFriendship() {
@@ -75,11 +79,13 @@
     }
 
     function getEnvironment() {
+      document.getElementById("os").append(liff.getOS());
+      document.getElementById("version").append(liff.getVersion());
     }
 
     async function main() {
-      alert("LINE Developers x Skooldio")
-      await liff.init({ liffId: "YOUR-LIFF-ID" })
+      //alert("LINE Developers x Skooldio")
+      await liff.init({ liffId: "1654334292-QBv9jlBx" })
       // getEnvironment()
       // getUserProfile()
       // getContext()
