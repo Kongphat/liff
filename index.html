@@ -43,6 +43,8 @@
 
   <script src="https://static.line-scdn.net/liff/edge/versions/2.2.0/sdk.js"></script>
   <script>
+    var accesstoken = "";
+    var userId = "";
     function createUniversalLink() {
       const link1 = liff.permanentLink.createUrl()
       document.getElementById("universalLink1").append(link1)
@@ -118,6 +120,7 @@
     async function getUserProfile() {
       const profile = await liff.getProfile()
       document.getElementById("pictureUrl").src = profile.pictureUrl
+      userId = profile.userId;
       document.getElementById("userId").append(profile.userId)
       document.getElementById("statusMessage").append(profile.statusMessage)
       document.getElementById("displayName").append(profile.displayName)
@@ -141,14 +144,18 @@
 
 
     function getEnvironment() {
-      document.getElementById("os").append(liff.getOS());
-      accesstoken = liff.getAccessToken();
-      document.getElementById("accessToken").append(accesstoken);
-      //var uri = "http://110.77.132.11:8055/index.aspx?token="+accesstoken;
-      //window.location.href = uri;
-
-      //alert(accesstoken);
-      //document.getElementById("version").append(liff.getVersion());
+      document.getElementById("os").append(liff.getOS())
+      document.getElementById("language").append(liff.getLanguage())
+      document.getElementById("version").append(liff.getVersion())
+      document.getElementById("accessToken").append(liff.getAccessToken())
+      document.getElementById("isInClient").append(liff.isInClient())
+      if (liff.isInClient()) {
+        document.getElementById("btnLogOut").style.display = "none"
+      } else {
+        document.getElementById("btnMsg").style.display = "none"
+        document.getElementById("btnScanCode").style.display = "none"
+        document.getElementById("btnClose").style.display = "none"
+      }
     }
 
     async function main() {
