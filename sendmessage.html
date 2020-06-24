@@ -1,0 +1,78 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+  <title>TMKGO Line</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.2.0/sdk.js"></script>
+  <script>
+    var accesstoken = "";
+    var userId = "";
+    var qrcode = "";
+
+    function logOut() {
+      liff.logout()
+      window.location.reload()
+    }
+
+    function closed() {
+      liff.closeWindow()
+    }
+
+    async function scanCode() {
+      const result = await liff.scanCode()
+      qrcode = result.value
+    }
+    
+    function openWindow() {
+      liff.openWindow({
+        url: "http://110.77.132.11:8055/index.aspx?token="+userId,
+        external: false
+      })
+    }
+
+    async function getFriendship() {
+      const friend = await liff.getFriendship()
+      document.getElementById("friendship").append(friend.friendFlag)
+      if (!friend.friendFlag) {
+          window.location = "https://line.me/R/ti/p/@436cjehw";
+      }
+    }
+
+    async function sendMsg() {
+      if (liff.getContext().type !== "none") {
+        await liff.sendMessages([
+          {
+            "type": "text",
+            "text": "รอข้อความจ่ายเงิน"
+          }
+        ])
+        //alert("Message sent")
+      }
+    }
+
+    async function getUserProfile() {
+      const profile = await liff.getProfile()
+      userId = profile.userId;
+    }
+
+    async function main() {
+      liff.ready.then(() => {
+        if (liff.isLoggedIn()) {
+          getUserProfile()
+          getFriendship()
+          sendMsg()
+          closed()
+        } else {
+          liff.login()
+        }
+      })
+      await liff.init({ liffId: "1654334292-QBv9jlBx" })
+    }
+    main()
+  </script>
+</body>
+</html>
