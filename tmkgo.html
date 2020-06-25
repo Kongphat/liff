@@ -4,9 +4,37 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
   <title>TMKGO Line</title>
   <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,400;1,400&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>  
+  <style>
+    body {
+        font-family: 'Kanit', sans-serif;
+        font-size: 10pt;
+        background-color:#f8f8f8;
+    }
+    .center {
+        margin: auto;
+        background-color: #FFFFFF;
+        width: 300px;
+        border: 1px solid #dddddd;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px #cccccc;
+        padding: 10px;
+        height: 200px;
+        text-align: center;
+        position: relative;
+        top:100px;
+    }
+</style>  
 </head>
 <body>
-    <button style="width:200px;border-radius:5px;background-color: crimson;" onclick="openWindow();closed();">สั่งสินค้า</button>
+  <button class="btn btn-danger" onclick="openWindow();closed();">สั่งสินค้า</button>
   <script src="https://static.line-scdn.net/liff/edge/versions/2.2.0/sdk.js"></script>
   <script>
     var accesstoken = "";
@@ -74,5 +102,6 @@
     }
     main()
   </script>
+  
 </body>
 </html>
