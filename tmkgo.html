@@ -34,74 +34,75 @@
 </style>  
 </head>
 <body>
-  <button class="btn btn-danger" style="width: 200px;" onclick="openWindow();closed();">สั่งสินค้า</button>
-  <script src="https://static.line-scdn.net/liff/edge/versions/2.2.0/sdk.js"></script>
-  <script>
-    var accesstoken = "";
-    var userId = "";
-    var qrcode = "";
+  <form>
+    <button class="btn btn-danger" style="width: 200px;" onclick="openWindow();closed();">สั่งสินค้า</button>
+    <script src="https://static.line-scdn.net/liff/edge/versions/2.2.0/sdk.js"></script>
+    <script>
+      var accesstoken = "";
+      var userId = "";
+      var qrcode = "";
 
-    function logOut() {
-      liff.logout()
-      window.location.reload()
-    }
-
-    function closed() {
-      liff.closeWindow()
-    }
-
-    async function scanCode() {
-      const result = await liff.scanCode()
-      qrcode = result.value
-    }
-    
-    function openWindow() {
-      liff.openWindow({
-        url: "http://110.77.132.11:8055/index.aspx?token="+userId,
-        external: false
-      })
-    }
-
-    async function getFriendship() {
-      const friend = await liff.getFriendship()
-      document.getElementById("friendship").append(friend.friendFlag)
-      if (!friend.friendFlag) {
-          window.location = "https://line.me/R/ti/p/@436cjehw";
+      function logOut() {
+        liff.logout()
+        window.location.reload()
       }
-    }
 
-    async function sendMsg() {
-      if (liff.getContext().type !== "none") {
-        await liff.sendMessages([
-          {
-            "type": "text",
-            "text": "เข้าสู่ระบบ TMKGO"
-          }
-        ])
-        //alert("Message sent")
+      function closed() {
+        liff.closeWindow()
       }
-    }
 
-    async function getUserProfile() {
-      const profile = await liff.getProfile()
-      userId = profile.userId;
-    }
+      async function scanCode() {
+        const result = await liff.scanCode()
+        qrcode = result.value
+      }
+      
+      function openWindow() {
+        liff.openWindow({
+          url: "http://110.77.132.11:8055/index.aspx?token="+userId,
+          external: false
+        })
+      }
 
-    async function main() {
-      liff.ready.then(() => {
-        if (liff.isLoggedIn()) {
-          getUserProfile()
-          getFriendship()
-          sendMsg()
-          
-        } else {
-          liff.login()
+      async function getFriendship() {
+        const friend = await liff.getFriendship()
+        document.getElementById("friendship").append(friend.friendFlag)
+        if (!friend.friendFlag) {
+            window.location = "https://line.me/R/ti/p/@436cjehw";
         }
-      })
-      await liff.init({ liffId: "1654334292-QBv9jlBx" })
-    }
-    main()
-  </script>
-  
+      }
+
+      async function sendMsg() {
+        if (liff.getContext().type !== "none") {
+          await liff.sendMessages([
+            {
+              "type": "text",
+              "text": "เข้าสู่ระบบ TMKGO"
+            }
+          ])
+          //alert("Message sent")
+        }
+      }
+
+      async function getUserProfile() {
+        const profile = await liff.getProfile()
+        userId = profile.userId;
+      }
+
+      async function main() {
+        liff.ready.then(() => {
+          if (liff.isLoggedIn()) {
+            getUserProfile()
+            getFriendship()
+            sendMsg()
+            
+          } else {
+            liff.login()
+          }
+        })
+        await liff.init({ liffId: "1654334292-QBv9jlBx" })
+      }
+      main()
+    </script>
+  </form>
 </body>
 </html>
