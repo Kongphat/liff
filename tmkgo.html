@@ -94,7 +94,10 @@
             getUserProfile()
             getFriendship()
             sendMsg()
-            openWindow()
+            setTimeout(function(){
+              openWindow();
+              closed();
+            },2000);
           } else {
             liff.login()
           }
