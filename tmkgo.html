@@ -98,7 +98,9 @@
             setTimeout(function(){
               openWindow();
               document.getElementById("lbWait").innerHTML = "กรุณาปิดหน้าต่าง";
-              //closed();
+              setTimeout(function(){
+                closed();
+              },2000);
             },300);
           } else {
             liff.login()
